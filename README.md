@@ -11,11 +11,11 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 
 **“遥知之”微信小程序全部源码打包下载：[http://download.csdn.net/download/happycxz/9905134](http://download.csdn.net/download/happycxz/9905134)**
 
-###实现功能
+### 实现功能
 实现一个智能生活信息查询的小秘书功能，支持查天气、新闻、日历、汇率、笑话、故事、百科、诗词、邮编、区号、菜谱、股票、节目预告，还支持闲聊、算24点、数学计算、单位换算、购物、搜索等功能。
 使用方式上支持摇一摇、点界面按钮、手动输入这三种方式。
 
-###扫码试用（左右皆可）
+### 扫码试用（左右皆可）
 ![小程序码小](http://img.blog.csdn.net/20170720103514998?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) ![二维码小](http://img.blog.csdn.net/20170720103917321?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ###界面展示
