@@ -2,7 +2,7 @@
 wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizhi).
 
 
-##微信小程序智能生活小秘书开发详解
+## 微信小程序智能生活小秘书开发详解
 
 
 **>>>>>>>>>>>>>>>>>>>>>>>> 欢迎转载 <<<<<<<<<<<<<<<<<<<<<<<<**
@@ -18,17 +18,17 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 ### 扫码试用（左右皆可）
 ![小程序码小](http://img.blog.csdn.net/20170720103514998?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) ![二维码小](http://img.blog.csdn.net/20170720103917321?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-###界面展示
+### 界面展示
 ![遥知之首页](http://img.blog.csdn.net/20170720101733931?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 
-###开发资源
+### 开发资源
 1. 免费开放语义接口平台 olami.ai
 2. 微信小程序平台
 3. js, css
 
 
-###源码分析
+### 源码分析
 ![源码各文件说明](http://img.blog.csdn.net/20170720134028543?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 基本延用官方案例的目录结构和命名，index.xx是首页面相关代码，logs.xx是日志页相关代码。
@@ -43,7 +43,7 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	
 	小程序背景图片，开发环境上加载本地文件作为背景图片是生效的，预览体验时不生效，网上有人说不支持本地文件，因此这里这个图片其实没有用到，只是暂时留着。
 
-####小程序根目录文件：app.js, app.json, app.wxss, config.js
+#### 小程序根目录文件：app.js, app.json, app.wxss, config.js
 ---
 **app.js**
 
@@ -221,7 +221,7 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	  ]
 	};
 
-####utils目录文件：GUID.js, MD5.js, NLI.js, util.js
+#### utils目录文件：GUID.js, MD5.js, NLI.js, util.js
 ---
 **获取随机GUID：GUID.js**
 
@@ -645,7 +645,7 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	  getUserUnique: getUserUnique
 	}
 
-####page/logs页面：logs.js, logs.json, logs.wxml, logs.wxss
+#### page/logs页面：logs.js, logs.json, logs.wxml, logs.wxss
 ---
 **logs.js**
 
@@ -699,7 +699,7 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	  margin: 10rpx;
 	}
 
-####page/index页面：index.js, index.json, index.wxml, index.wxss
+#### page/index页面：index.js, index.json, index.wxml, index.wxss
 ---
 **index.js**
 
@@ -1236,7 +1236,7 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	  line-height: 2.58823529em;
 	}
 
-###olami平台资源配置
+### olami平台资源配置
 
 ，在配置上稍微有些不同，下面我会重点说明一下。
 
@@ -1266,7 +1266,7 @@ CSDN: [http://download.csdn.net/download/happycxz/9905134](http://download.csdn.
 github: [https://github.com/happycxz/nlp_olami_yaozhizhi_wechat_littleapp_demo](https://github.com/happycxz/nlp_olami_yaozhizhi_wechat_littleapp_demo)
 
 
-###写在最后
+### 写在最后
 这次做微信小程序，是边摸索边做，JS和CSS基本是边改边学，好在微信小程序框架清晰，接口文档全，另外olami平台之前做  [用olami开放语义平台做汇率换算应用](http://blog.csdn.net/happycxz/article/details/73223916) 时接触过，所以总体来讲还算顺利。
 
 ---------------
