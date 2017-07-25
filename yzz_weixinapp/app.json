@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "black",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "navigationBarTitleText": "遥知之 -- olami语义支持",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F8F8F8"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  }
+}

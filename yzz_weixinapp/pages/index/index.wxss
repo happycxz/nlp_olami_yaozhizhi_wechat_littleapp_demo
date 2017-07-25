@@ -1,0 +1,88 @@
+page{
+  background-color:beige;
+  background-image: url(http://img.blog.csdn.net/20170720105808995?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast);
+  background-size: cover;
+}
+
+.page-section{
+  margin-bottom: 10rpx;
+}
+
+.page-gap{
+  margin-top: 20rpx;
+}
+
+.button-selection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-selection2 {
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.little-gap-top {
+  margin-top: 15rpx; 
+}
+
+.little-gap-left {
+  margin-left: 15rpx; 
+}
+
+.text-dec-an{
+  color: #ff00ff;
+  font-size: 28rpx;
+}
+
+.common-disappear {
+  display: none
+}
+
+.button-show {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+
+.text-box{
+  margin-bottom: 0rpx;
+  margin-left: 50rpx;
+  margin-right: 50rpx;
+  padding: 40rpx 0;
+  display: flex;
+  min-height: 300rpx;
+  max-width: 600rpx;
+  width:600rpx;
+  background-color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  font-size: 30rpx;
+  color: #353535;
+  line-height: 2em;
+  word-wrap: break-word;
+  border: 1px solid cornflowerblue;
+}
+
+
+.weui-cells {
+  position: relative;
+  margin-top: 1.17647059em;
+  background-color: #DCDCDC;
+  line-height: 1.41176471;
+  font-size: 14px;
+}
+
+.weui-cells_after-title {
+  margin-top: 0;
+}
+
+.weui-input {
+  height: 2.58823529em;
+  width: 17em;
+  min-height: 2.58823529em;
+  line-height: 2.58823529em;
+}

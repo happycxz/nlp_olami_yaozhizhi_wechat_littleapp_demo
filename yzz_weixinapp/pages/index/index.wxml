@@ -1,0 +1,57 @@
+<view class="container">
+
+  <view class="page-section">
+    <view class="text-box" scroll-y="true">      
+      <text style="max-width:200px;overflow-y:auto;height:200px;" selectable="true">{{outputTxt}}</text>
+    </view>
+  </view>
+
+  <view class="page-section page-gap">
+    <text selectable="true" class="text-dec-an">支持“摇一摇”、点按钮、手动输入</text>
+  </view>
+
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+        <input class="weui-input" placeholder-style="color:#6aa84f"  maxlength="50" 
+          placeholder="点此手动输入" value="{{inputTxt}}" confirm-type ="send" bindconfirm="bindConfirmControl" bindfocus="bindFocusClear"/>
+    </view>
+  </view>
+
+  <view class="button-selection page-gap">
+    <view class="{{isDbg?'button-show':'common-disappear'}}">
+      <button type="default" size="mini" bindtap="bindTest">调试</button>
+    </view> 
+
+    <view class="button-selection2">
+      <button type="default" size="mini" data-cp="今天天气" bindtap="bindCorpusGenerator">天气</button>
+      <button type="default" class="little-gap-left" size="mini" data-cp="今天的体育新闻" bindtap="bindCorpusGenerator">新闻</button>
+      <button type="default" class="little-gap-left" size="mini" data-cp="今年什么时候过年" bindtap="bindCorpusGenerator">日历</button>
+      <button type="default" class="little-gap-left" size="mini" data-cp="100人民币能换多少美金" bindtap="bindCorpusGenerator">汇率</button>
+    </view>
+    <view class="button-selection2">
+      <button type="default" class="little-gap-top" size="mini" data-cp="来个段子" bindtap="bindCorpusGenerator">笑话</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="我要看鬼故事" bindtap="bindCorpusGenerator">故事</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="好无聊啊" bindtap="bindCorpusGenerator">闲聊</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="介绍一下习近平" bindtap="bindCorpusGenerator">百科</button>
+    </view>
+    <view class="button-selection2">
+      <button type="default" class="little-gap-top" size="mini" data-cp="背一首李白的望庐山瀑布" bindtap="bindCorpusGenerator">诗词</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="6789算24点怎么算" bindtap="bindCorpusGenerator">24点</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="江西婺源的邮编是多少" bindtap="bindCorpusGenerator">邮编</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="帮忙查一下扬州的区号" bindtap="bindCorpusGenerator">区号</button>
+    </view>
+    <view class="button-selection2">
+      <button type="default" class="little-gap-top" size="mini" data-cp="鲈鱼可以怎么做" bindtap="bindCorpusGenerator">菜谱</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="今天的大盘指数" bindtap="bindCorpusGenerator">股票</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="我想买个电风扇" bindtap="bindCorpusGenerator">购物</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="搜索薛之谦" bindtap="bindCorpusGenerator">搜索</button>
+    </view>
+    <view class="button-selection2">
+      <button type="default" class="little-gap-top" size="mini" data-cp="今晚番茄台放什么节目" bindtap="bindCorpusGenerator">节目预告</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="3的平方加8再乘以6再除以2等于几" bindtap="bindCorpusGenerator">数学计算</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="1光年等于多少公里" bindtap="bindCorpusGenerator">单位换算</button>
+    </view>
+
+  </view>
+
+</view>
