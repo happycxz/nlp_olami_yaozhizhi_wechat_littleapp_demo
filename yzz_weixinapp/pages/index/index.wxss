@@ -5,11 +5,17 @@ page{
 }
 
 .page-section{
+  display: flex;
+  flex-direction: column;
   margin-bottom: 10rpx;
 }
 
+.page-center {
+  align-items: center;
+}
+
 .page-gap{
-  margin-top: 20rpx;
+  margin-top: 5rpx;
 }
 
 .button-selection {
@@ -22,6 +28,7 @@ page{
 .button-selection2 {
   justify-content: space-between;
   align-content: space-between;
+  flex-shrink:1;
 }
 
 .little-gap-top {
@@ -29,12 +36,17 @@ page{
 }
 
 .little-gap-left {
-  margin-left: 15rpx; 
+  margin-left: 5rpx; 
 }
 
-.text-dec-an{
-  color: #ff00ff;
+.text-description{
+  color: #ff0000;
   font-size: 28rpx;
+}
+
+.text-head{
+  color: #00BFFF;
+  font-size: 36rpx;
 }
 
 .common-disappear {
@@ -67,7 +79,6 @@ page{
   border: 1px solid cornflowerblue;
 }
 
-
 .weui-cells {
   position: relative;
   margin-top: 1.17647059em;
@@ -85,4 +96,9 @@ page{
   width: 17em;
   min-height: 2.58823529em;
   line-height: 2.58823529em;
+}
+
+.bottom-button {
+  justify-content: space-around;
+  flex-shrink:0;
 }

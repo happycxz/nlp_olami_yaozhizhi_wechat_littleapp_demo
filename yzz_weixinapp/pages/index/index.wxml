@@ -1,13 +1,13 @@
 <view class="container">
-
   <view class="page-section">
     <view class="text-box" scroll-y="true">      
       <text style="max-width:200px;overflow-y:auto;height:200px;" selectable="true">{{outputTxt}}</text>
     </view>
   </view>
 
-  <view class="page-section page-gap">
-    <text selectable="true" class="text-dec-an">支持“摇一摇”、点按钮、手动输入</text>
+  <view class="page-section page-gap page-center">
+    <text selectable="true" class="text-head">语义理解基于“欧拉密”：cn.olami.ai</text>
+    <text selectable="true" class="text-description little-gap-top">支持“摇一摇”、点按钮、手动输入、向下拉</text>
   </view>
 
   <view class="page-section">
@@ -23,35 +23,39 @@
     </view> 
 
     <view class="button-selection2">
-      <button type="default" size="mini" data-cp="今天天气" bindtap="bindCorpusGenerator">天气</button>
-      <button type="default" class="little-gap-left" size="mini" data-cp="今天的体育新闻" bindtap="bindCorpusGenerator">新闻</button>
-      <button type="default" class="little-gap-left" size="mini" data-cp="今年什么时候过年" bindtap="bindCorpusGenerator">日历</button>
-      <button type="default" class="little-gap-left" size="mini" data-cp="100人民币能换多少美金" bindtap="bindCorpusGenerator">汇率</button>
-    </view>
-    <view class="button-selection2">
-      <button type="default" class="little-gap-top" size="mini" data-cp="来个段子" bindtap="bindCorpusGenerator">笑话</button>
-      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="我要看鬼故事" bindtap="bindCorpusGenerator">故事</button>
-      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="好无聊啊" bindtap="bindCorpusGenerator">闲聊</button>
-      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="介绍一下习近平" bindtap="bindCorpusGenerator">百科</button>
-    </view>
-    <view class="button-selection2">
-      <button type="default" class="little-gap-top" size="mini" data-cp="背一首李白的望庐山瀑布" bindtap="bindCorpusGenerator">诗词</button>
-      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="6789算24点怎么算" bindtap="bindCorpusGenerator">24点</button>
-      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="江西婺源的邮编是多少" bindtap="bindCorpusGenerator">邮编</button>
-      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="帮忙查一下扬州的区号" bindtap="bindCorpusGenerator">区号</button>
-    </view>
-    <view class="button-selection2">
-      <button type="default" class="little-gap-top" size="mini" data-cp="鲈鱼可以怎么做" bindtap="bindCorpusGenerator">菜谱</button>
-      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="今天的大盘指数" bindtap="bindCorpusGenerator">股票</button>
-      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="我想买个电风扇" bindtap="bindCorpusGenerator">购物</button>
-      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="搜索薛之谦" bindtap="bindCorpusGenerator">搜索</button>
-    </view>
-    <view class="button-selection2">
-      <button type="default" class="little-gap-top" size="mini" data-cp="今晚番茄台放什么节目" bindtap="bindCorpusGenerator">节目预告</button>
-      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="3的平方加8再乘以6再除以2等于几" bindtap="bindCorpusGenerator">数学计算</button>
-      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="1光年等于多少公里" bindtap="bindCorpusGenerator">单位换算</button>
+      <button type="default" size="mini" data-cp="今天天气|北京今天有雨吗|西安今天冷不冷|今天适合洗车吗|那后天上海怎么样|北京明天有雾霾吗|南京今天空气污染指数有多高" bindtap="bindCorpusGenerator">天气</button>
+      <button type="default" class="little-gap-left" size="mini" data-cp="今天的体育新闻|看国内新闻|今天有什么重大新闻|今天有没有什么大事|有今天的财经新闻吗|钓鱼岛事件的最新进展是什么|来个军事新闻|接下来还有吗" bindtap="bindCorpusGenerator">新闻</button>
+      <button type="default" class="little-gap-left" size="mini" data-cp="今年什么时候中秋节|目前时间|明天星期几|农历八月15是哪天|离国庆节还有几天|还有多久到六点|今年是闰年吗？" bindtap="bindCorpusGenerator">日历</button>
+      <button type="default" class="little-gap-left" size="mini" data-cp="100人民币能换多少美金|美国用什么货币|100美金能换多少日元|英镑现在多少钱|美元现在什么价格|帮我查查美元汇率" bindtap="bindCorpusGenerator">汇率</button>
+      <button type="default" class="little-gap-left" size="mini" data-cp="来个段子|说个笑话听听|讲个黑色幽默|讲个笑话逗逗我|还要一个笑话|换一个|随便来几个笑话听听" bindtap="bindCorpusGenerator">笑话</button>
     </view>
 
+    <view class="button-selection2">
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="我要看鬼故事|给我讲个好听的故事|下一个|换一个" bindtap="bindCorpusGenerator">故事</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="好无聊啊|你是机器人吗|很高兴见到你|你能嫁给我吗|你的心上人是谁|你今天吃饭了吗|你困了吗|喂,你好吗|你喜欢吃蔬菜吗|你饿吗|你今天过生日吗|你什么时候出生的|你要喝水吗|能和我聊会天吗|你怎么那么笨啊|我在骂你|你听不懂吗|我要生气啦 |你想要气死我啊|怎么什么都不会|你真让我失望|你寂寞吗|你觉得自己聪明吗|我好伤心啊|你有外号吗|你需要休息吗|你要不要休息会啊|你感觉累吗|你脸皮真薄" bindtap="bindCorpusGenerator">闲聊</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="介绍一下刘德华|李双江的老婆是谁|张学友简介|黄山有多高|湖南省有多大|太湖有多大|印度有多少人口" bindtap="bindCorpusGenerator">百科</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="背一首李白的望庐山瀑布|春眠不觉晓下一句是什么|唯见长江天际流上一句是什么|将进酒是谁写的|李白有什么诗|李白还写过什么诗|背首李白的诗" bindtap="bindCorpusGenerator">诗词</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="6789算24点怎么算|用三三八八算出24|1357怎么等于24|1689怎么得到24|怎么用3567得到24|1357帮我刷24点|算24点数字为2346" bindtap="bindCorpusGenerator">24点</button>
+    </view>
+
+    <view class="button-selection2">
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="江西婺源的邮编是多少|哪里的邮政编码是201203|什么地方的邮政编码是201203|我要你帮我查邮政编码|我要查邮政编码|告诉我北京的邮政编码|给我查个邮政编码|我要查邮编|帮我查邮政编码|找一下上海的邮政编码" bindtap="bindCorpusGenerator">邮编</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="帮忙查一下扬州的区号|哪里的区号是021|区号021是哪里|我要查区号|帮我查区号|找一下上海的区号" bindtap="bindCorpusGenerator">区号</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="鲈鱼可以怎么做|排骨怎么烹饪好吃|怎样炖排骨|排骨可以做成什么菜|常见的鲁菜有哪些|川菜有哪些菜式比较有名|有哪些川菜比较有名|哪些菜属于鲁菜|川菜怎么做|你会做川菜吗|推荐几种清真菜|介绍几个湘菜给我" bindtap="bindCorpusGenerator">菜谱</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="今天的大盘指数|中国石化的行情怎么样|今天的行情|中国石化的价格是多少|中国石化的成交量怎么样|上证指数现在多少点|查一下招商银行今日的开盘价|今天上证指数几点" bindtap="bindCorpusGenerator">股票</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="我想买个电风扇|我要买两袋大米|我要网购一盒牛奶|我要在京东买一台电脑|我要买一部HTC的手机|我想买个飞利浦的剃须刀" bindtap="bindCorpusGenerator">购物</button>
+    </view>
+
+    <view class="button-selection2">
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="今晚番茄台放什么节目|中央一台今晚有什么节目|非诚勿扰今晚什么时候播出|7点到9点哪个台有电影|晚上11点以后哪个台放蜘蛛侠|我要看湖南卫视" bindtap="bindCorpusGenerator">节目预告</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="3的平方加8再乘以6再除以2等于几|5的平方根|6的七次方|99的三倍|19的三分之一是多少|77的一半加13等于多少|67个9加起来是多少|5个15乘在一起等于几|4乘以6加5乘以8加12乘以7|四分之三|7的9倍|三的一半|17个9|12的对数|23的自然对数|5加六加七再乘10|三只苹果加五只苹果等于几只苹果|19加7" bindtap="bindCorpusGenerator">计算</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="搜索薛之谦|帮我找一些九寨沟的图片|我想看看范冰冰的照片|我要查一下白羽鸡|帮我搜下科鲁兹的性能" bindtap="bindCorpusGenerator">搜索</button>
+      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="1光年等于多少公里|1标准大气压等于多少帕|1标准大气压等于多少毫米汞柱|1兆瓦等于多少毫瓦|1签卡等于多少焦|1纳米等于多少毫米|1埃等于多少纳米|1厘米等于多少英寸|1公斤等于多少克|1担等于多少斤|1两等于多少钱|1毫克等于多少微克|1亩等于多少公顷" bindtap="bindCorpusGenerator">单位换算</button>
+    </view>
   </view>
+</view>
 
+<view class="little-gap-top button-selection2 button-show bottom-button">
+  <button type="primary" size="mini" open-type="contact">联系作者</button>
+  <button type="primary" size="mini" open-type="share">帮忙分享</button>
 </view>

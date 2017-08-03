@@ -3,6 +3,8 @@ var app = getApp()
 
 var Guid = require('./GUID.js');
 
+var uuidSaved = '';
+
 //将date格式的数据转成  hh:mm:ss 字符串格式
 function formatTime(date) {
   var year = date.getFullYear()
@@ -33,11 +35,22 @@ function log(obj) {
   // wx.setStorageSync('logs', logs)
 }
 
-//获取用户唯一标识，NLI接口中要上传用户唯一标识，这里获取微信号所在地+昵称
+//获取用户唯一标识，NLI接口中要上传用户唯一标识，这里获取：第一次登录时生成的uuid+微信号所在地+昵称
 function getUserUnique(userInfo) {
-  var unique = Guid.NewGuid();
+  //从缓存中读取uuid
+  if (typeof uuidSaved === 'undefined' || uuidSaved === '') {
+    var tmpUuid = wx.getStorageSync('uuid');
+    if (typeof tmpUuid === 'undefined' || tmpUuid === '') {
+      uuidSaved = Guid.NewGuid();
+      wx.setStorageSync('uuid', uuidSaved);
+    } else {
+      uuidSaved = tmpUuid;
+    }
+  }
+
+  var unique = uuidSaved;
   if (userInfo != null) {
-    unique = userInfo.province + '_' + userInfo.nickName;
+    unique += '_' + userInfo.province + '_' + userInfo.nickName;
   }
   log('getUserUnique() return:' + unique)
   return unique;

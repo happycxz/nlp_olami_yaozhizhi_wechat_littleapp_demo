@@ -6,9 +6,10 @@
   "window": {
     "backgroundTextStyle": "black",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "navigationBarTitleText": "遥知之 -- olami语义支持",
+    "navigationBarTitleText": "遥知之 -- 人工智能小秘书",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#F8F8F8"
+    "backgroundColor": "#F8F8F8",
+    "enablePullDownRefresh": true
   },
   "networkTimeout": {
     "request": 10000,

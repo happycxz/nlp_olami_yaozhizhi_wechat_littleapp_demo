@@ -10,6 +10,10 @@ var NLI = require('../../utils/NLI.js');
 var cursor = 0;
 var lastYYYTime = new Date().getTime();
 
+var domainCorpus = '';
+var lastCorpus = '';
+
+
 function log(obj) {
   UTIL.log(obj)
 }
@@ -110,6 +114,8 @@ Page({
    */
   onPullDownRefresh: function () {
     log('index.onPullDownRefresh')
+    
+    wx.stopPullDownRefresh();
 
     //页面下拉，触发轮换语料理解
     selectCorpusRunNli(this)
@@ -170,15 +176,45 @@ Page({
     selectCorpusRunNli(this)
   },
 
+  //快捷按钮触发语料运行语义理解
   bindCorpusGenerator: function (e) {
     log('index.bindCorpusGenerator')
     //获取"data-cp"中的语料
-    var corpus = e.target.dataset.cp;
+    var corpusList = e.target.dataset.cp.split('|');
 
-    //快捷按钮触发语料运行语义理解
+    //默认头一次（或新切换时）点击，选用第一句语料
+    var corpus = corpusList[0];
+    if (domainCorpus !== corpusList[0]) {
+      domainCorpus = corpusList[0];
+    } else {
+      //否则在语料表中随机挑选一个
+      corpus = getRandomItem(corpusList);
+
+      //与上一句重复就换一句
+      if (lastCorpus === corpus) {
+        corpus = getRandomItem(corpusList);
+        if (lastCorpus === corpus) {
+          corpus = getRandomItem(corpusList);
+          if (lastCorpus === corpus) {
+            corpus = getRandomItem(corpusList);
+          }
+        }
+      }
+    }
+
+    //记录最近一次使用的语料
+    lastCorpus = corpus;
+
     singleCorpusRunNli(corpus, this);
   }
 })
+
+//从语料数组中随机挑选一条语料
+function getRandomItem(corpusList) {
+  var ret = corpusList[0];
+  ret = corpusList[Math.floor(Math.random() * corpusList.length)];
+  return ret;
+}
 
 //解析NLI接口返回的数据，从语义结果中筛选出适合显示的文本内容
 function getSentenceFromNliResult(nliResult) {
