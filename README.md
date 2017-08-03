@@ -2,33 +2,36 @@
 wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizhi).
 
 
-## 微信小程序智能生活小秘书开发详解
+##微信小程序智能生活小秘书开发详解
 
 
 **>>>>>>>>>>>>>>>>>>>>>>>> 欢迎转载 <<<<<<<<<<<<<<<<<<<<<<<<**
 
 **本文原地址:[http://blog.csdn.net/happycxz/article/details/75432928](http://blog.csdn.net/happycxz/article/details/75432928)**
 
-**“遥知之”微信小程序全部源码打包下载：[http://download.csdn.net/download/happycxz/9905134](http://download.csdn.net/download/happycxz/9905134)**
+**“遥知之”微信小程序完整源码下载：**
+CSDN: [http://download.csdn.net/download/happycxz/9919690](http://download.csdn.net/download/happycxz/9919690)
+github: [https://github.com/happycxz/nlp_olami_yaozhizhi_wechat_littleapp_demo](https://github.com/happycxz/nlp_olami_yaozhizhi_wechat_littleapp_demo)
 
-### 实现功能
+
+###实现功能
 实现一个智能生活信息查询的小秘书功能，支持查天气、新闻、日历、汇率、笑话、故事、百科、诗词、邮编、区号、菜谱、股票、节目预告，还支持闲聊、算24点、数学计算、单位换算、购物、搜索等功能。
-使用方式上支持摇一摇、点界面按钮、手动输入这三种方式。
+使用方式上支持摇一摇、点界面按钮、手动输入、下拉刷新这四种方式。
 
-### 扫码试用（左右皆可）
+###扫码试用（左右皆可）
 ![小程序码小](http://img.blog.csdn.net/20170720103514998?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) ![二维码小](http://img.blog.csdn.net/20170720103917321?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-### 界面展示
+###界面展示
 ![遥知之首页](http://img.blog.csdn.net/20170720101733931?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 
-### 开发资源
+###开发资源
 1. 免费开放语义接口平台 olami.ai
 2. 微信小程序平台
 3. js, css
 
 
-### 源码分析
+###源码分析
 ![源码各文件说明](http://img.blog.csdn.net/20170720134028543?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 基本延用官方案例的目录结构和命名，index.xx是首页面相关代码，logs.xx是日志页相关代码。
@@ -43,12 +46,14 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	
 	小程序背景图片，开发环境上加载本地文件作为背景图片是生效的，预览体验时不生效，网上有人说不支持本地文件，因此这里这个图片其实没有用到，只是暂时留着。
 
-#### 小程序根目录文件：app.js, app.json, app.wxss, config.js
+####小程序根目录文件：app.js, app.json, app.wxss, config.js
 ---
 **app.js**
 
 提供获取用户微信账号昵称和所在地，获取当前地理位置这两个公共接口。
 
+	//app.js
+	
 	const corpusList = require('./config').corpus
 	var UTIL = require('./utils/util.js');
 	
@@ -120,6 +125,7 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	    speed: 0,
 	  }
 	})
+
 
 ---
 **app.json**
@@ -221,7 +227,7 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	  ]
 	};
 
-#### utils目录文件：GUID.js, MD5.js, NLI.js, util.js
+####utils目录文件：GUID.js, MD5.js, NLI.js, util.js
 ---
 **获取随机GUID：GUID.js**
 
@@ -596,8 +602,12 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 ---
 **其它utils：util.js**
 
+	//获取应用实例
 	var app = getApp()
+	
 	var Guid = require('./GUID.js');
+	
+	var uuidSaved = '';
 	
 	//将date格式的数据转成  hh:mm:ss 字符串格式
 	function formatTime(date) {
@@ -624,16 +634,27 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	  console.log('<' + formatTime(new Date(Date.now())) + '>' + ' ' + obj)
 	
 	  //往用户缓存去写
-	  var logs = wx.getStorageSync('logs') || []
-	  logs.unshift('[' + formatTime(new Date(Date.now())) + ']' + ' ' + obj)
-	  wx.setStorageSync('logs', logs)
+	  // var logs = wx.getStorageSync('logs') || []
+	  // logs.unshift('[' + formatTime(new Date(Date.now())) + ']' + ' ' + obj)
+	  // wx.setStorageSync('logs', logs)
 	}
 	
-	//获取用户唯一标识，NLI接口中要上传用户唯一标识，这里获取微信号所在地+昵称
+	//获取用户唯一标识，NLI接口中要上传用户唯一标识，这里获取：第一次登录时生成的uuid+微信号所在地+昵称
 	function getUserUnique(userInfo) {
-	  var unique = Guid.NewGuid();
+	  //从缓存中读取uuid
+	  if (typeof uuidSaved === 'undefined' || uuidSaved === '') {
+	    var tmpUuid = wx.getStorageSync('uuid');
+	    if (typeof tmpUuid === 'undefined' || tmpUuid === '') {
+	      uuidSaved = Guid.NewGuid();
+	      wx.setStorageSync('uuid', uuidSaved);
+	    } else {
+	      uuidSaved = tmpUuid;
+	    }
+	  }
+	
+	  var unique = uuidSaved;
 	  if (userInfo != null) {
-	    unique = userInfo.province + '_' + userInfo.nickName;
+	    unique += '_' + userInfo.province + '_' + userInfo.nickName;
 	  }
 	  log('getUserUnique() return:' + unique)
 	  return unique;
@@ -645,7 +666,9 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	  getUserUnique: getUserUnique
 	}
 
-#### page/logs页面：logs.js, logs.json, logs.wxml, logs.wxss
+
+
+####page/logs页面：logs.js, logs.json, logs.wxml, logs.wxss
 ---
 **logs.js**
 
@@ -699,10 +722,13 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	  margin: 10rpx;
 	}
 
-#### page/index页面：index.js, index.json, index.wxml, index.wxss
+####page/index页面：index.js, index.json, index.wxml, index.wxss
 ---
 **index.js**
 
+	// index.js
+	
+	//获取应用实例
 	var app = getApp()
 	
 	var UTIL = require('../../utils/util.js');
@@ -711,6 +737,10 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	
 	var cursor = 0;
 	var lastYYYTime = new Date().getTime();
+	
+	var domainCorpus = '';
+	var lastCorpus = '';
+	
 	
 	function log(obj) {
 	  UTIL.log(obj)
@@ -812,6 +842,8 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	   */
 	  onPullDownRefresh: function () {
 	    log('index.onPullDownRefresh')
+	    
+	    wx.stopPullDownRefresh();
 	
 	    //页面下拉，触发轮换语料理解
 	    selectCorpusRunNli(this)
@@ -872,22 +904,45 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	    selectCorpusRunNli(this)
 	  },
 	
-	  bindLog: function () {
-	    //另一个测试按钮触发打开LOG页
-	    wx.navigateTo({
-	      url: '../logs/logs'
-	    })
-	  },
-	
+	  //快捷按钮触发语料运行语义理解
 	  bindCorpusGenerator: function (e) {
 	    log('index.bindCorpusGenerator')
 	    //获取"data-cp"中的语料
-	    var corpus = e.target.dataset.cp;
+	    var corpusList = e.target.dataset.cp.split('|');
 	
-	    //快捷按钮触发语料运行语义理解
+	    //默认头一次（或新切换时）点击，选用第一句语料
+	    var corpus = corpusList[0];
+	    if (domainCorpus !== corpusList[0]) {
+	      domainCorpus = corpusList[0];
+	    } else {
+	      //否则在语料表中随机挑选一个
+	      corpus = getRandomItem(corpusList);
+	
+	      //与上一句重复就换一句
+	      if (lastCorpus === corpus) {
+	        corpus = getRandomItem(corpusList);
+	        if (lastCorpus === corpus) {
+	          corpus = getRandomItem(corpusList);
+	          if (lastCorpus === corpus) {
+	            corpus = getRandomItem(corpusList);
+	          }
+	        }
+	      }
+	    }
+	
+	    //记录最近一次使用的语料
+	    lastCorpus = corpus;
+	
 	    singleCorpusRunNli(corpus, this);
 	  }
 	})
+	
+	//从语料数组中随机挑选一条语料
+	function getRandomItem(corpusList) {
+	  var ret = corpusList[0];
+	  ret = corpusList[Math.floor(Math.random() * corpusList.length)];
+	  return ret;
+	}
 	
 	//解析NLI接口返回的数据，从语义结果中筛选出适合显示的文本内容
 	function getSentenceFromNliResult(nliResult) {
@@ -1026,6 +1081,21 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	      isDbg: true,
 	      inputTxt: ''
 	    });
+	    // 打开调试
+	    wx.setEnableDebug({
+	      enableDebug: true
+	    })
+	    return;
+	  } else if(inputTxt === 'gbd' || inputTxt === 'GBD' || inputTxt === 'Gbd') {
+	    self.setData({
+	      //关闭调试按钮
+	      isDbg: false,
+	      inputTxt: ''
+	    });
+	    // 关闭调试
+	    wx.setEnableDebug({
+	      enableDebug: false,
+	    })
 	    return;
 	  }
 	
@@ -1072,12 +1142,16 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	  return false;
 	}
 
+
 ---
 **index.json**
 
-首页延用app.json中的配置，不需要单独的配置，所以这个文件为空。
+首页延用app.json中的配置，不需要单独的配置，这里主要配置一个允许下拉。
 
 	{
+	  "window": {
+	    "enablePullDownRefresh": true
+	  }
 	}
 
 ---
@@ -1086,15 +1160,15 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 这个是首页的h5布局。
 
 	<view class="container">
-	
 	  <view class="page-section">
 	    <view class="text-box" scroll-y="true">      
 	      <text style="max-width:200px;overflow-y:auto;height:200px;" selectable="true">{{outputTxt}}</text>
 	    </view>
 	  </view>
 	
-	  <view class="page-section page-gap">
-	    <text selectable="true" class="text-dec-an">支持“摇一摇”、点按钮、手动输入</text>
+	  <view class="page-section page-gap page-center">
+	    <text selectable="true" class="text-head">语义理解基于“欧拉密”：cn.olami.ai</text>
+	    <text selectable="true" class="text-description little-gap-top">支持“摇一摇”、点按钮、手动输入、向下拉</text>
 	  </view>
 	
 	  <view class="page-section">
@@ -1107,39 +1181,44 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	  <view class="button-selection page-gap">
 	    <view class="{{isDbg?'button-show':'common-disappear'}}">
 	      <button type="default" size="mini" bindtap="bindTest">调试</button>
-	      <button type="default" size="mini" bindtap="bindLog">日志</button>
 	    </view> 
 	
 	    <view class="button-selection2">
-	      <button type="default" size="mini" data-cp="今天天气" bindtap="bindCorpusGenerator">天气</button>
-	      <button type="default" class="little-gap-left" size="mini" data-cp="今天的体育新闻" bindtap="bindCorpusGenerator">新闻</button>
-	      <button type="default" class="little-gap-left" size="mini" data-cp="今年什么时候过年" bindtap="bindCorpusGenerator">日历</button>
-	      <button type="default" class="little-gap-left" size="mini" data-cp="100人民币能换多少美金" bindtap="bindCorpusGenerator">汇率</button>
+	      <button type="default" size="mini" data-cp="今天天气|北京今天有雨吗|西安今天冷不冷|今天适合洗车吗|那后天上海怎么样|北京明天有雾霾吗|南京今天空气污染指数有多高" bindtap="bindCorpusGenerator">天气</button>
+	      <button type="default" class="little-gap-left" size="mini" data-cp="今天的体育新闻|看国内新闻|今天有什么重大新闻|今天有没有什么大事|有今天的财经新闻吗|钓鱼岛事件的最新进展是什么|来个军事新闻|接下来还有吗" bindtap="bindCorpusGenerator">新闻</button>
+	      <button type="default" class="little-gap-left" size="mini" data-cp="今年什么时候中秋节|目前时间|明天星期几|农历八月15是哪天|离国庆节还有几天|还有多久到六点|今年是闰年吗？" bindtap="bindCorpusGenerator">日历</button>
+	      <button type="default" class="little-gap-left" size="mini" data-cp="100人民币能换多少美金|美国用什么货币|100美金能换多少日元|英镑现在多少钱|美元现在什么价格|帮我查查美元汇率" bindtap="bindCorpusGenerator">汇率</button>
+	      <button type="default" class="little-gap-left" size="mini" data-cp="来个段子|说个笑话听听|讲个黑色幽默|讲个笑话逗逗我|还要一个笑话|换一个|随便来几个笑话听听" bindtap="bindCorpusGenerator">笑话</button>
 	    </view>
+	
 	    <view class="button-selection2">
-	      <button type="default" class="little-gap-top" size="mini" data-cp="来个段子" bindtap="bindCorpusGenerator">笑话</button>
-	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="我要看鬼故事" bindtap="bindCorpusGenerator">故事</button>
-	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="好无聊啊" bindtap="bindCorpusGenerator">闲聊</button>
-	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="介绍一下习近平" bindtap="bindCorpusGenerator">百科</button>
+	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="我要看鬼故事|给我讲个好听的故事|下一个|换一个" bindtap="bindCorpusGenerator">故事</button>
+	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="好无聊啊|你是机器人吗|很高兴见到你|你能嫁给我吗|你的心上人是谁|你今天吃饭了吗|你困了吗|喂,你好吗|你喜欢吃蔬菜吗|你饿吗|你今天过生日吗|你什么时候出生的|你要喝水吗|能和我聊会天吗|你怎么那么笨啊|我在骂你|你听不懂吗|我要生气啦 |你想要气死我啊|怎么什么都不会|你真让我失望|你寂寞吗|你觉得自己聪明吗|我好伤心啊|你有外号吗|你需要休息吗|你要不要休息会啊|你感觉累吗|你脸皮真薄" bindtap="bindCorpusGenerator">闲聊</button>
+	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="介绍一下刘德华|李双江的老婆是谁|张学友简介|黄山有多高|湖南省有多大|太湖有多大|印度有多少人口" bindtap="bindCorpusGenerator">百科</button>
+	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="背一首李白的望庐山瀑布|春眠不觉晓下一句是什么|唯见长江天际流上一句是什么|将进酒是谁写的|李白有什么诗|李白还写过什么诗|背首李白的诗" bindtap="bindCorpusGenerator">诗词</button>
+	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="6789算24点怎么算|用三三八八算出24|1357怎么等于24|1689怎么得到24|怎么用3567得到24|1357帮我刷24点|算24点数字为2346" bindtap="bindCorpusGenerator">24点</button>
 	    </view>
+	
 	    <view class="button-selection2">
-	      <button type="default" class="little-gap-top" size="mini" data-cp="背一首李白的望庐山瀑布" bindtap="bindCorpusGenerator">诗词</button>
-	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="6789算24点怎么算" bindtap="bindCorpusGenerator">24点</button>
-	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="江西婺源的邮编是多少" bindtap="bindCorpusGenerator">邮编</button>
-	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="帮忙查一下扬州的区号" bindtap="bindCorpusGenerator">区号</button>
+	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="江西婺源的邮编是多少|哪里的邮政编码是201203|什么地方的邮政编码是201203|我要你帮我查邮政编码|我要查邮政编码|告诉我北京的邮政编码|给我查个邮政编码|我要查邮编|帮我查邮政编码|找一下上海的邮政编码" bindtap="bindCorpusGenerator">邮编</button>
+	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="帮忙查一下扬州的区号|哪里的区号是021|区号021是哪里|我要查区号|帮我查区号|找一下上海的区号" bindtap="bindCorpusGenerator">区号</button>
+	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="鲈鱼可以怎么做|排骨怎么烹饪好吃|怎样炖排骨|排骨可以做成什么菜|常见的鲁菜有哪些|川菜有哪些菜式比较有名|有哪些川菜比较有名|哪些菜属于鲁菜|川菜怎么做|你会做川菜吗|推荐几种清真菜|介绍几个湘菜给我" bindtap="bindCorpusGenerator">菜谱</button>
+	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="今天的大盘指数|中国石化的行情怎么样|今天的行情|中国石化的价格是多少|中国石化的成交量怎么样|上证指数现在多少点|查一下招商银行今日的开盘价|今天上证指数几点" bindtap="bindCorpusGenerator">股票</button>
+	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="我想买个电风扇|我要买两袋大米|我要网购一盒牛奶|我要在京东买一台电脑|我要买一部HTC的手机|我想买个飞利浦的剃须刀" bindtap="bindCorpusGenerator">购物</button>
 	    </view>
+	
 	    <view class="button-selection2">
-	      <button type="default" class="little-gap-top" size="mini" data-cp="鲈鱼可以怎么做" bindtap="bindCorpusGenerator">菜谱</button>
-	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="今天的大盘指数" bindtap="bindCorpusGenerator">股票</button>
-	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="我想买个电风扇" bindtap="bindCorpusGenerator">购物</button>
-	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="搜索薛之谦" bindtap="bindCorpusGenerator">搜索</button>
-	    </view>
-	    <view class="button-selection2">
-	      <button type="default" class="little-gap-top" size="mini" data-cp="今晚番茄台放什么节目" bindtap="bindCorpusGenerator">节目预告</button>
-	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="3的平方加8再乘以6再除以2等于几" bindtap="bindCorpusGenerator">数学计算</button>
-	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="1光年等于多少公里" bindtap="bindCorpusGenerator">单位换算</button>
+	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="今晚番茄台放什么节目|中央一台今晚有什么节目|非诚勿扰今晚什么时候播出|7点到9点哪个台有电影|晚上11点以后哪个台放蜘蛛侠|我要看湖南卫视" bindtap="bindCorpusGenerator">节目预告</button>
+	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="3的平方加8再乘以6再除以2等于几|5的平方根|6的七次方|99的三倍|19的三分之一是多少|77的一半加13等于多少|67个9加起来是多少|5个15乘在一起等于几|4乘以6加5乘以8加12乘以7|四分之三|7的9倍|三的一半|17个9|12的对数|23的自然对数|5加六加七再乘10|三只苹果加五只苹果等于几只苹果|19加7" bindtap="bindCorpusGenerator">计算</button>
+	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="搜索薛之谦|帮我找一些九寨沟的图片|我想看看范冰冰的照片|我要查一下白羽鸡|帮我搜下科鲁兹的性能" bindtap="bindCorpusGenerator">搜索</button>
+	      <button type="default" class="little-gap-left little-gap-top" size="mini" data-cp="1光年等于多少公里|1标准大气压等于多少帕|1标准大气压等于多少毫米汞柱|1兆瓦等于多少毫瓦|1签卡等于多少焦|1纳米等于多少毫米|1埃等于多少纳米|1厘米等于多少英寸|1公斤等于多少克|1担等于多少斤|1两等于多少钱|1毫克等于多少微克|1亩等于多少公顷" bindtap="bindCorpusGenerator">单位换算</button>
 	    </view>
 	  </view>
+	</view>
+	
+	<view class="little-gap-top button-selection2 button-show bottom-button">
+	  <button type="primary" size="mini" open-type="contact">联系作者</button>
+	  <button type="primary" size="mini" open-type="share">帮忙分享</button>
 	</view>
 
 ---
@@ -1154,11 +1233,17 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	}
 	
 	.page-section{
+	  display: flex;
+	  flex-direction: column;
 	  margin-bottom: 10rpx;
 	}
 	
+	.page-center {
+	  align-items: center;
+	}
+	
 	.page-gap{
-	  margin-top: 20rpx;
+	  margin-top: 5rpx;
 	}
 	
 	.button-selection {
@@ -1171,6 +1256,7 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	.button-selection2 {
 	  justify-content: space-between;
 	  align-content: space-between;
+	  flex-shrink:1;
 	}
 	
 	.little-gap-top {
@@ -1178,12 +1264,17 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	}
 	
 	.little-gap-left {
-	  margin-left: 15rpx; 
+	  margin-left: 5rpx; 
 	}
 	
-	.text-dec-an{
-	  color: #ff00ff;
+	.text-description{
+	  color: #ff0000;
 	  font-size: 28rpx;
+	}
+	
+	.text-head{
+	  color: #00BFFF;
+	  font-size: 36rpx;
 	}
 	
 	.common-disappear {
@@ -1216,7 +1307,6 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	  border: 1px solid cornflowerblue;
 	}
 	
-	
 	.weui-cells {
 	  position: relative;
 	  margin-top: 1.17647059em;
@@ -1235,8 +1325,14 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 	  min-height: 2.58823529em;
 	  line-height: 2.58823529em;
 	}
+	
+	.bottom-button {
+	  justify-content: space-around;
+	  flex-shrink:0;
+	}
 
-### olami平台资源配置
+
+###olami平台资源配置
 
 ，在配置上稍微有些不同，下面我会重点说明一下。
 
@@ -1262,11 +1358,11 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 **本文原地址:[http://blog.csdn.net/happycxz/article/details/75432928](http://blog.csdn.net/happycxz/article/details/75432928)**
 
 **“遥知之”微信小程序完整源码下载：**
-CSDN: [http://download.csdn.net/download/happycxz/9905134](http://download.csdn.net/download/happycxz/9905134)
+CSDN: [http://download.csdn.net/download/happycxz/9919690](http://download.csdn.net/download/happycxz/9919690)
 github: [https://github.com/happycxz/nlp_olami_yaozhizhi_wechat_littleapp_demo](https://github.com/happycxz/nlp_olami_yaozhizhi_wechat_littleapp_demo)
 
 
-### 写在最后
+###写在最后
 这次做微信小程序，是边摸索边做，JS和CSS基本是边改边学，好在微信小程序框架清晰，接口文档全，另外olami平台之前做  [用olami开放语义平台做汇率换算应用](http://blog.csdn.net/happycxz/article/details/73223916) 时接触过，所以总体来讲还算顺利。
 
 ---------------
@@ -1287,5 +1383,10 @@ github: [https://github.com/happycxz/nlp_olami_yaozhizhi_wechat_littleapp_demo](
 [使用OLAMI SDK和讯飞语音合成制作一个语音回复的短信小助手](http://blog.csdn.net/speeds3/article/details/75131125)
 
 [微信小程序——智能小秘“遥知之”源码分享（语义理解基于olami）](http://blog.csdn.net/happycxz/article/details/75432928)
+
+
+
+
+
 
 
