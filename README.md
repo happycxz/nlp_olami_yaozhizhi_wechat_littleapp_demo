@@ -33,7 +33,7 @@ github: [https://github.com/happycxz/nlp_olami_yaozhizhi_wechat_littleapp_demo](
 
 ### 界面展示
 
-![遥知之首页](http://img.blog.csdn.net/20170720101733931?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![新版本界面展示](http://img.blog.csdn.net/20170919112113110?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 
 ### 开发资源
