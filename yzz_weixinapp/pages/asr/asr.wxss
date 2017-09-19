@@ -1,0 +1,127 @@
+/* pages/asr/asr.wxss */
+
+page{
+  background-color:beige;
+  background-image: url(http://img.blog.csdn.net/20170720105808995?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast);
+  background-size: cover;
+}
+
+.page-section{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10rpx;
+}
+
+.text-head{
+  color: #ff0000;
+  font-size: 28rpx;
+  align-items: center;
+  margin-top: 5rpx;
+}
+
+.button-selection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-selection2 {
+  justify-content: space-between;
+  align-content: space-between;
+  flex-shrink:1;
+}
+
+.little-gap-top {
+  margin-top: 10rpx; 
+}
+
+.big-gap-top {
+  margin-top: 100rpx; 
+}
+
+.button-show {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+
+.bottom-button {
+  justify-content: space-around;
+  flex-shrink:0;
+}
+
+.text-box{
+  margin-bottom: 0rpx;
+  margin-left: 50rpx;
+  margin-right: 50rpx;
+  padding: 40rpx 0;
+  display: flex;
+  min-height: 650rpx;
+  max-width: 600rpx;
+  width:600rpx;
+  background-color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  font-size: 30rpx;
+  color: #353535;
+  line-height: 2em;
+  word-wrap: break-word;
+  border: 1px solid cornflowerblue;
+}
+
+
+/* 录音 */
+.speak-style{ 
+    position: relative; 
+    height: 240rpx; 
+    width: 240rpx; 
+    border-radius: 20rpx; 
+    margin: 0 auto; 
+    background: #26A5FF; 
+} 
+.record-style{ 
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    height: 120rpx; 
+    width: 100%; 
+} 
+.btn-style{ 
+  margin-left: 30rpx; 
+  margin-right: 30rpx; 
+} 
+   
+.sound-style{ 
+  position: absolute; 
+  width: 74rpx; 
+  height:150rpx; 
+  margin-top: 45rpx; 
+  margin-left: 83rpx; 
+} 
+
+
+/* 弹幕 */
+.button{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.aon{
+position: absolute;
+white-space:nowrap;
+animation-timing-function: linear;
+animation-fill-mode: none;
+}
+.doommview{
+  z-index: 3;
+  height: 80%;
+  width: 100%;
+/*  position: absolute;  */
+}
+
+@keyframes first{
+  from{left: 100%; }
+  to{left: -100%;}
+}

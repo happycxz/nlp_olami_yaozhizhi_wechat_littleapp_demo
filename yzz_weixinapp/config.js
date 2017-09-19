@@ -9,7 +9,7 @@ module.exports = {
 
   //NLI appsecret
   appsecret: `7908028332a64e47b8336d71ad3ce9ab`,
-  
+
   corpus: [
     // '闲聊',
     // '天气',

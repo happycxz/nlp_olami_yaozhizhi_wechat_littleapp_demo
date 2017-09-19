@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/asr/asr",
+    "pages/test/test",
     "pages/index/index",
     "pages/logs/logs"
   ],
@@ -9,7 +11,7 @@
     "navigationBarTitleText": "遥知之 -- 人工智能小秘书",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#F8F8F8",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": false
   },
   "networkTimeout": {
     "request": 10000,

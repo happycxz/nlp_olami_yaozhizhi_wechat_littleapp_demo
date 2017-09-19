@@ -56,8 +56,28 @@ function getUserUnique(userInfo) {
   return unique;
 }
 
+//由 毫秒数字符串 获取  HH:mm:ss 格式时间
+function getHHMMSS(dateStr) {
+  var dateVal = new Date(parseInt(dateStr));
+  var hh = dateVal.getHours()
+  var mm = dateVal.getMinutes()
+  var ss = dateVal.getSeconds()
+
+  return ((hh >= 10) ? hh : '0' + hh) + ':' + ((mm >= 10) ? mm : '0' + mm) + ':' + ((ss >= 10) ? ss : '0' + ss)
+}
+
+
+//从语料数组中随机挑选一条语料
+function getRandomItem(corpusList) {
+  var ret = corpusList[0];
+  ret = corpusList[Math.floor(Math.random() * corpusList.length)];
+  return ret;
+}
+
 module.exports = {
   formatTime: formatTime,
   log: log,
-  getUserUnique: getUserUnique
+  getUserUnique: getUserUnique,
+  getHHMMSS: getHHMMSS,
+  getRandomItem: getRandomItem,
 }

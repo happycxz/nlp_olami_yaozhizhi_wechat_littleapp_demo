@@ -6,7 +6,7 @@
   </view>
 
   <view class="page-section page-gap page-center">
-    <text selectable="true" class="text-head">语义理解基于“欧拉密”：cn.olami.ai</text>
+    <text selectable="true" class="text-head">语义理解基于“欧拉蜜”：cn.olami.ai</text>
     <text selectable="true" class="text-description little-gap-top">支持“摇一摇”、点按钮、手动输入、向下拉</text>
   </view>
 
@@ -57,5 +57,6 @@
 
 <view class="little-gap-top button-selection2 button-show bottom-button">
   <button type="primary" size="mini" open-type="contact">联系作者</button>
+  <button type="primary" size="mini" bindtap="turnToNew">切回新版</button>
   <button type="primary" size="mini" open-type="share">帮忙分享</button>
 </view>
