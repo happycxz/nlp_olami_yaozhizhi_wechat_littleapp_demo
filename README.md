@@ -9,6 +9,13 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 
 **本文原地址:[http://blog.csdn.net/happycxz/article/details/75432928](http://blog.csdn.net/happycxz/article/details/75432928)**
 
+### 扫码试用（左右皆可）
+
+![小程序码小](http://img.blog.csdn.net/20170720103514998?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
+
+![二维码小](http://img.blog.csdn.net/20170720103917321?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+
 **“遥知之”微信小程序完整源码下载：**
 
 码云：[http://git.oschina.net/happycxz/nlp_olami_yaozhizhi_wechat_littleapp_demo](http://git.oschina.net/happycxz/nlp_olami_yaozhizhi_wechat_littleapp_demo)
@@ -24,12 +31,6 @@ github: [https://github.com/happycxz/nlp_olami_yaozhizhi_wechat_littleapp_demo](
 **新版上线支持语音识别，按下说话，松开发送。** 
 
 老版本上支持摇一摇、点界面按钮、手动输入、下拉刷新这四种方式。
-
-### 扫码试用（左右皆可）
-
-![小程序码小](http://img.blog.csdn.net/20170720103514998?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-
-![二维码小](http://img.blog.csdn.net/20170720103917321?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ### 界面展示
 
