@@ -11,9 +11,7 @@ wechat little app, base on olami NLI inteface, named it as '遥知之' (yaozhizh
 
 ### 扫码试用（左右皆可）
 
-![小程序码小](http://img.blog.csdn.net/20170720103514998?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-
-![二维码小](http://img.blog.csdn.net/20170720103917321?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![小程序码小](http://img.blog.csdn.net/20170720103514998?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) ![二维码小](http://img.blog.csdn.net/20170720103917321?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGFwcHljeHo=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 
 **“遥知之”微信小程序完整源码下载：**
